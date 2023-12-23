@@ -1,4 +1,4 @@
-#include "AVLTree.h"
+#include "ArbolAVLmod.h"
 #include <algorithm>
 
 Node* AVLTree::createNode(Registro* registro) {
@@ -7,17 +7,28 @@ Node* AVLTree::createNode(Registro* registro) {
     node->left = nullptr;
     node->right = nullptr;
     node->height = 1;
-    return(node);
+    return node;
 }
 
-Node* AVLTree::insertNode(Node* node, Registro* registro) {
+Node* AVLTree::insertNode(Node* node, Registro* registro, const std::string& ordenacion) {
     if (node == nullptr)
-        return(createNode(registro));
+        return createNode(registro);
 
-    if (registro->getUuid() < node->registro->getUuid())
-        node->left = insertNode(node->left, registro);
-    else if (registro->getUuid() > node->registro->getUuid())
-        node->right = insertNode(node->right, registro);
+    int comparisonResult = 0;
+
+    if (ordenacion == "institucion")
+        comparisonResult = registro->getInstitucion().compare(node->registro->getInstitucion());
+    else if (ordenacion == "edad")
+        comparisonResult = registro->getEdad() - node->registro->getEdad();
+    else if (ordenacion == "sexo")
+        comparisonResult = registro->getSexo().compare(node->registro->getSexo());
+    else if (ordenacion == "resultado")
+        comparisonResult = registro->getResultado().compare(node->registro->getResultado());
+
+    if (comparisonResult < 0)
+        node->left = insertNode(node->left, registro, ordenacion);
+    else if (comparisonResult > 0)
+        node->right = insertNode(node->right, registro, ordenacion);
     else
         return node;
 
@@ -25,18 +36,18 @@ Node* AVLTree::insertNode(Node* node, Registro* registro) {
 
     int balance = getBalance(node);
 
-    if (balance > 1 && registro->getUuid() < node->left->registro->getUuid())
+    if (balance > 1 && comparisonResult < 0)
         return rotateRight(node);
 
-    if (balance < -1 && registro->getUuid() > node->right->registro->getUuid())
+    if (balance < -1 && comparisonResult > 0)
         return rotateLeft(node);
 
-    if (balance > 1 && registro->getUuid() > node->left->registro->getUuid()) {
+    if (balance > 1 && comparisonResult > 0) {
         node->left = rotateLeft(node->left);
         return rotateRight(node);
     }
 
-    if (balance < -1 && registro->getUuid() < node->right->registro->getUuid()) {
+    if (balance < -1 && comparisonResult < 0) {
         node->right = rotateRight(node->right);
         return rotateLeft(node);
     }
@@ -51,22 +62,20 @@ Node* AVLTree::deleteNode(Node* root, int id) {
     if (id < root->registro->getUuid())
         root->left = deleteNode(root->left, id);
 
-    else if(id > root->registro->getUuid())
+    else if (id > root->registro->getUuid())
         root->right = deleteNode(root->right, id);
 
     else {
-        if((root->left == nullptr) || (root->right == nullptr)) {
-            Node *temp = root->left ? root->left : root->right;
+        if ((root->left == nullptr) || (root->right == nullptr)) {
+            Node* temp = root->left ? root->left : root->right;
 
-            if(temp == nullptr) {
+            if (temp == nullptr) {
                 temp = root;
                 root = nullptr;
-            }
-            else
+            } else
                 *root = *temp;
             free(temp);
-        }
-        else {
+        } else {
             Node* temp = minValueNode(root->right);
             root->registro = temp->registro;
             root->right = deleteNode(root->right, temp->registro->getUuid());
@@ -138,12 +147,12 @@ int AVLTree::height(Node* N) {
     return N->height;
 }
 
-AVLTree::AVLTree() {
+AVLTree::AVLTree(const std::string& ordenacion) : ordenacionActual(ordenacion) {
     root = nullptr;
 }
 
 void AVLTree::insert(Registro* registro) {
-    root = insertNode(root, registro);
+    root = insertNode(root, registro, ordenacionActual);
 }
 
 void AVLTree::deleteRegistro(int id) {
@@ -162,4 +171,3 @@ Registro* AVLTree::search(int id) {
     }
     return nullptr;
 }
-

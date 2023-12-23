@@ -16,8 +16,21 @@ int main(int argc, char *argv[])
     w.show();
 
     AVLTree* tree = new AVLTree();
-    std::vector<int> positivos;
-    std::vector<int> negativos;
+    std::vector<std::vector<Registro*>> FECHAS_CORTE;
+    std::vector<std::vector<Registro*>> FECHAS_MUESTRAS;
+    std::vector<std::vector<Registro*>> Edades;
+    std::vector<std::vector<Registro*>> Sexos;
+    std::vector<std::vector<Registro*>> instituciones;
+    std::vector<std::vector<Registro*>> UBIGEO_PACIENTES;
+    std::vector<std::vector<Registro*>> DEPARTAMENTO_PACIENTES;
+    std::vector<std::vector<Registro*>> PROVINCIA_PACIENTES;
+    std::vector<std::vector<Registro*>> DISTRITO_PACIENTES;
+    std::vector<std::vector<Registro*>> DEPARTAMENTO_MUESTRAS;
+    std::vector<std::vector<Registro*>> PROVINCIA_MUESTRAS;
+    std::vector<std::vector<Registro*>> DISTRITO_MUESTRAS;
+    std::vector<std::vector<Registro*>> TIPO_MUESTRAS;
+    std::vector<std::vector<Registro*>> resultados;
+
 
     QFile file("PRUEBAS_COVID_CSV.csv");
     if (!file.open(QIODevice::ReadOnly)) {
@@ -33,36 +46,407 @@ int main(int argc, char *argv[])
         QByteArray line = file.readLine();
         QStringList fields = QString(line).split(";");
 
-        Registro* registro = new Registro(id, fields[0].toStdString(), fields[1].toStdString(), fields[2].toStdString(), fields[3].toInt(), fields[4].toStdString(), fields[5].toStdString(), fields[6].toStdString(), fields[7].toStdString(), fields[8].toStdString(), fields[9].toStdString(), fields[10].toStdString(), fields[11].toStdString(), fields[12].toStdString(), fields[13].toStdString(), fields[14].toStdString());
+        int uuid = (fields[1].compare("NULL", Qt::CaseInsensitive) == 0) ? -id : fields[1].toInt();
+        Registro* registro = new Registro(fields[0].toStdString(), uuid, fields[2].toStdString(), fields[3].toInt(), fields[4].toStdString(), fields[5].toStdString(), fields[6].toStdString(), fields[7].toStdString(), fields[8].toStdString(), fields[9].toStdString(), fields[10].toStdString(), fields[11].toStdString(), fields[12].toStdString(), fields[13].toStdString(), fields[14].toStdString());
+
         tree->insert(registro);
 
-        if (fields[14].toStdString() == "POSITIVO\r\n") {
-            positivos.push_back(id);
 
-        } else if (fields[14].toStdString() == "NEGATIVO\r\n") {
-            negativos.push_back(id);
+        //====================== FECHAS_CORTE ===========================================
+        // Buscar la institución en el vector de vectores
+        bool FECHAS_CORTEEncontrada = false;
+        for (auto& vec : FECHAS_CORTE) {
+            if (!vec.empty() && vec[0]->getFechaCorte() == registro->getFechaCorte()) {
+                vec.push_back(registro);
+                FECHAS_CORTEEncontrada = true;
+                break;
+            }
         }
 
-        id++;
+        // Si FECHAS_CORTE no existe, crear un nuevo vector
+        if (!FECHAS_CORTEEncontrada) {
+            FECHAS_CORTE.push_back({registro});
+        }
+
+
+        //====================== FECHAS_MUESTRAS ===========================================
+        // Buscar FECHAS_MUESTRAS en el vector de vectores
+        bool FECHAS_MUESTRASEncontrada = false;
+        for (auto& vec : FECHAS_MUESTRAS) {
+            if (!vec.empty() && vec[0]->getFechaMuestra() == registro->getFechaMuestra()) {
+                vec.push_back(registro);
+                FECHAS_MUESTRASEncontrada = true;
+                break;
+            }
+        }
+
+        // Si FECHAS_MUESTRAS no existe, crear un nuevo vector
+        if (!FECHAS_MUESTRASEncontrada) {
+            FECHAS_MUESTRAS.push_back({registro});
+        }
+
+
+        //====================== Edades ===========================================
+        // Buscar la Edades en el vector de vectores
+        bool EdadesEncontrada = false;
+        for (auto& vec : Edades) {
+            if (!vec.empty() && vec[0]->getEdad() == registro->getEdad()) {
+                vec.push_back(registro);
+                EdadesEncontrada = true;
+                break;
+            }
+        }
+
+        // Si la Edades no existe, crear un nuevo vector
+        if (!EdadesEncontrada) {
+            Edades.push_back({registro});
+        }
+
+
+        //====================== Sexos ===========================================
+        // Buscar Sexos en el vector de vectores
+        bool SexosEncontrada = false;
+        for (auto& vec : Sexos) {
+            if (!vec.empty() && vec[0]->getSexo() == registro->getSexo()) {
+                vec.push_back(registro);
+                SexosEncontrada = true;
+                break;
+            }
+        }
+
+        // Si Sexos no existe, crear un nuevo vector
+        if (!SexosEncontrada) {
+            Sexos.push_back({registro});
+        }
+
+
+        //====================== Instituciones ===========================================
+        // Buscar la institución en el vector de vectores
+        bool institucionEncontrada = false;
+        for (auto& vec : instituciones) {
+            if (!vec.empty() && vec[0]->getInstitucion() == registro->getInstitucion()) {
+                vec.push_back(registro);
+                institucionEncontrada = true;
+                break;
+            }
+        }
+
+        // Si la institución no existe, crear un nuevo vector
+        if (!institucionEncontrada) {
+            instituciones.push_back({registro});
+        }
+
+
+        //====================== UBIGEO_PACIENTES ===========================================
+        // Buscar UBIGEO_PACIENTES en el vector de vectores
+        bool UBIGEO_PACIENTESEncontrada = false;
+        for (auto& vec : UBIGEO_PACIENTES) {
+            if (!vec.empty() && vec[0]->getUbigeoPaciente() == registro->getUbigeoPaciente()) {
+                vec.push_back(registro);
+                UBIGEO_PACIENTESEncontrada = true;
+                break;
+            }
+        }
+
+        // Si UBIGEO_PACIENTES no existe, crear un nuevo vector
+        if (!UBIGEO_PACIENTESEncontrada) {
+           UBIGEO_PACIENTES.push_back({registro});
+        }
+
+
+        //====================== DEPARTAMENTO_PACIENTES ===========================================
+        // Buscar PDEPARTAMENTO_PACIENTES en el vector de vectores
+        bool DEPARTAMENTO_PACIENTESEncontrada = false;
+        for (auto& vec : DEPARTAMENTO_PACIENTES) {
+           if (!vec.empty() && vec[0]->getDepartamentoPaciente() == registro->getDepartamentoPaciente()) {
+                vec.push_back(registro);
+                DEPARTAMENTO_PACIENTESEncontrada = true;
+                break;
+           }
+        }
+
+        // Si DEPARTAMENTO_PACIENTES no existe, crear un nuevo vector
+        if (!DEPARTAMENTO_PACIENTESEncontrada) {
+           DEPARTAMENTO_PACIENTES.push_back({registro});
+        }
+
+        //====================== PROVINCIA_PACIENTES ===========================================
+        // Buscar PROVINCIA_PACIENTES en el vector de vectores
+        bool PROVINCIA_PACIENTESEncontrada = false;
+        for (auto& vec : PROVINCIA_PACIENTES) {
+            if (!vec.empty() && vec[0]->getProvinciaPaciente() == registro->getProvinciaPaciente()) {
+                vec.push_back(registro);
+                PROVINCIA_PACIENTESEncontrada = true;
+                break;
+            }
+        }
+
+        // Si PROVINCIA_PACIENTES no existe, crear un nuevo vector
+        if (!PROVINCIA_PACIENTESEncontrada) {
+            PROVINCIA_PACIENTES.push_back({registro});
+        }
+
+
+        //====================== DISTRITO_PACIENTES ===========================================
+        // Buscar DISTRITO_PACIENTES en el vector de vectores
+        bool DISTRITO_PACIENTESEncontrada = false;
+        for (auto& vec : DISTRITO_PACIENTES) {
+            if (!vec.empty() && vec[0]->getDistritoPaciente() == registro->getDistritoPaciente()) {
+                vec.push_back(registro);
+                DISTRITO_PACIENTESEncontrada = true;
+                break;
+            }
+        }
+
+        // Si DISTRITO_PACIENTES no existe, crear un nuevo vector
+        if (!DISTRITO_PACIENTESEncontrada) {
+            DISTRITO_PACIENTES.push_back({registro});
+        }
+
+
+        //====================== DEPARTAMENTO_MUESTRAS ===========================================
+        // Buscar DEPARTAMENTO_MUESTRAS en el vector de vectores
+        bool DEPARTAMENTO_MUESTRASEncontrada = false;
+        for (auto& vec : DEPARTAMENTO_MUESTRAS) {
+            if (!vec.empty() && vec[0]->getDepartamentoMuestra() == registro->getDepartamentoMuestra()) {
+                vec.push_back(registro);
+                DEPARTAMENTO_MUESTRASEncontrada = true;
+                break;
+            }
+        }
+
+        // Si DEPARTAMENTO_MUESTRAS no existe, crear un nuevo vector
+        if (!DEPARTAMENTO_MUESTRASEncontrada) {
+            DEPARTAMENTO_MUESTRAS.push_back({registro});
+        }
+
+
+        //====================== PROVINCIA_MUESTRAS ===========================================
+        // Buscar PROVINCIA_MUESTRAS en el vector de vectores
+        bool PROVINCIA_MUESTRASEncontrada = false;
+        for (auto& vec : PROVINCIA_MUESTRAS) {
+            if (!vec.empty() && vec[0]->getProvinciaMuestra() == registro->getProvinciaMuestra()) {
+                vec.push_back(registro);
+                PROVINCIA_MUESTRASEncontrada = true;
+                break;
+            }
+        }
+
+        // Si PROVINCIA_MUESTRAS no existe, crear un nuevo vector
+        if (!PROVINCIA_MUESTRASEncontrada) {
+            PROVINCIA_MUESTRAS.push_back({registro});
+        }
+
+
+        //====================== DISTRITO_MUESTRAS ===========================================
+        // Buscar DISTRITO_MUESTRAS en el vector de vectores
+        bool DISTRITO_MUESTRASEncontrada = false;
+        for (auto& vec : DISTRITO_MUESTRAS) {
+            if (!vec.empty() && vec[0]->getDistritoMuestra() == registro->getDistritoMuestra()) {
+                vec.push_back(registro);
+                DISTRITO_MUESTRASEncontrada = true;
+                break;
+            }
+        }
+
+        // Si DISTRITO_MUESTRAS no existe, crear un nuevo vector
+        if (!DISTRITO_MUESTRASEncontrada) {
+            DISTRITO_MUESTRAS.push_back({registro});
+        }
+
+
+        //====================== TIPO_MUESTRAS ===========================================
+        // Buscar TIPO_MUESTRAS en el vector de vectores
+        bool TIPO_MUESTRASEncontrada = false;
+        for (auto& vec : TIPO_MUESTRAS) {
+            if (!vec.empty() && vec[0]->getTipoMuestra() == registro->getTipoMuestra()) {
+                vec.push_back(registro);
+                TIPO_MUESTRASEncontrada = true;
+                break;
+            }
+        }
+
+        // Si TIPO_MUESTRAS no existe, crear un nuevo vector
+        if (! TIPO_MUESTRASEncontrada) {
+            TIPO_MUESTRAS.push_back({registro});
+        }
+
+        //====================== Resultados ===========================================
+        // Buscar resultados en el vector de vectores
+        bool resultadoEncontrada = false;
+        for (auto& vec : resultados) {
+            if (!vec.empty() && vec[0]->getResultado() == registro->getResultado()) {
+                vec.push_back(registro);
+                resultadoEncontrada = true;
+                break;
+            }
+        }
+
+
+        // Si la resultado no existe, crear un nuevo vector
+        if (!resultadoEncontrada) {
+            resultados.push_back({registro});
+        }
+
+
+        //====================== Incremento para los Null ===========================================
+
+        // Incrementar id solo si uuid es "NULL"
+        if (fields[1].compare("NULL", Qt::CaseInsensitive) == 0) {
+            id++;
+        }
     }
 
-    // Prueba de búsqueda
-    int idBusqueda = 1; // Cambia esto por el ID que quieras buscar
-    Registro* registroBuscado = tree->search(idBusqueda);
+
+
+    int uuidBusqueda = -1; // Cambia esto por el UUID que quieras buscar
+    Registro* registroBuscado = tree->search(uuidBusqueda);
     if (registroBuscado != nullptr) {
-        qDebug() << "Departamento del paciente con ID" << idBusqueda << ":" << QString::fromStdString(registroBuscado->getTipoMuestra());
+        // Imprimir la representación en texto del registro buscado
+        std::cout << "Registro con UUID " << uuidBusqueda << ":\n" << registroBuscado->toString() << std::endl;
     } else {
-        qDebug() << "No se encontró un registro con el ID" << idBusqueda;
+        qDebug() << "No se encontró un registro con el UUID" << uuidBusqueda;
     }
 
-    // Imprimir todos los IDs positivos
-    std::cout << "IDs de registros positivos:" << std::endl;
-    for (std::vector<int>::size_type i = 0; i < positivos.size(); i++) {
-        std::cout << positivos[i] <<" ";
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de FECHAS_CORTE en el vector principal
+    std::cout << "Nombres de FECHAS_CORTE en el Vector Principal:" << std::endl;
+    for (const auto& vec : FECHAS_CORTE) {
+        std::cout << vec[0]->getFechaCorte() << std::endl;
     }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de FECHAS_MUESTRAS en el vector principal
+    std::cout << "Nombres de FECHAS_MUESTRAS en el Vector Principal:" << std::endl;
+    for (const auto& vec : FECHAS_MUESTRAS) {
+        std::cout << vec[0]->getFechaMuestra() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de Edades en el vector principal
+    std::cout << "Nombres de Edades en el Vector Principal:" << std::endl;
+    for (const auto& vec : Edades) {
+        std::cout << vec[0]->getEdad() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de Sexos en el vector principal
+    std::cout << "Nombres de Sexos en el Vector Principal:" << std::endl;
+    for (const auto& vec : Sexos) {
+        std::cout << vec[0]->getSexo() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+
+    // Imprimir los nombres de las instituciones en el vector principal
+    std::cout << "Nombres de Instituciones en el Vector Principal:" << std::endl;
+    for (const auto& vec : instituciones) {
+        std::cout << vec[0]->getInstitucion() << std::endl;
+    }
+
+    std::cout << " " << std::endl;
+
+
+    // Imprimir los nombres de UBIGEO_PACIENTES en el vector principal
+    std::cout << "Nombres de UBIGEO_PACIENTES en el Vector Principal:" << std::endl;
+    for (const auto& vec : UBIGEO_PACIENTES) {
+        std::cout << vec[0]->getUbigeoPaciente() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de DEPARTAMENTO_PACIENTES en el vector principal
+    std::cout << "Nombres de DEPARTAMENTO_PACIENTES en el Vector Principal:" << std::endl;
+    for (const auto& vec : DEPARTAMENTO_PACIENTES) {
+        std::cout << vec[0]->getDepartamentoPaciente() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de PROVINCIA_PACIENTES en el vector principal
+    std::cout << "Nombres de PROVINCIA_PACIENTES en el Vector Principal:" << std::endl;
+    for (const auto& vec : PROVINCIA_PACIENTES) {
+        std::cout << vec[0]->getProvinciaPaciente() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres DISTRITO_PACIENTES en el vector principal
+    std::cout << "Nombres de DISTRITO_PACIENTES en el Vector Principal:" << std::endl;
+    for (const auto& vec : DISTRITO_PACIENTES) {
+        std::cout << vec[0]->getDistritoPaciente() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres DEPARTAMENTO_MUESTRAS en el vector principal
+    std::cout << "Nombres de DEPARTAMENTO_MUESTRAS en el Vector Principal:" << std::endl;
+    for (const auto& vec : DEPARTAMENTO_MUESTRAS) {
+        std::cout << vec[0]->getDepartamentoMuestra() << std::endl;
+    }
+
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de PROVINCIA_MUESTRAS en el vector principal
+    std::cout << "Nombres de PROVINCIA_MUESTRAS en el Vector Principal:" << std::endl;
+    for (const auto& vec : PROVINCIA_MUESTRAS) {
+        std::cout << vec[0]->getProvinciaMuestra() << std::endl;
+    }
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres DISTRITO_MUESTRAS en el vector principal
+    std::cout << "Nombres de DISTRITO_MUESTRAS en el Vector Principal:" << std::endl;
+    for (const auto& vec : DISTRITO_MUESTRAS) {
+        std::cout << vec[0]->getDistritoMuestra() << std::endl;
+    }
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de TIPO_MUESTRAS en el vector principal
+    std::cout << "Nombres de TIPO_MUESTRAS en el Vector Principal:" << std::endl;
+    for (const auto& vec : TIPO_MUESTRAS) {
+        std::cout << vec[0]->getTipoMuestra() << std::endl;
+    }
+
+    std::cout << " " << std::endl;
+
+    // Imprimir los nombres de los resultados en el vector principal
+    std::cout << "Nombres de resultados en el Vector Principal:" << std::endl;
+    for (const auto& vec : resultados) {
+        std::cout << vec[0]->getResultado() << std::endl;
+    }
+
+
+
+
+    // Imprimir el contenido del primer vector principal
+    /*
+    if (!instituciones.empty()) {
+        std::cout << "Contenido del primer vector principal:" << std::endl;
+        for (const auto& registro : instituciones[1]) {
+            std::cout << registro->toString() << std::endl;
+        }
+    }
+    */
 
     return a.exec();
 }
+
 
 
 

@@ -11,15 +11,20 @@ CONFIG += c++17
 SOURCES += \
     AVLTree.cpp \
     Registro.cpp \
+    VectorPlus.cpp \
     main.cpp \
+    mainpage.cpp \
     mainwindow.cpp
 
 HEADERS += \
     AVLTree.h \
     Registro.h \
+    VectorPlus.h \
+    mainpage.h \
     mainwindow.h
 
 FORMS += \
+    mainpage.ui \
     mainwindow.ui
 
 # Default rules for deployment.
