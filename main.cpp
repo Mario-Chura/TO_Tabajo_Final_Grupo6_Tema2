@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "Registro.h"
 #include "AVLTree.h"
+#include "CsvParser.h"
+#include "ConteoFiltrado.h"
 
 #include <QApplication>
 #include <QFile>
@@ -32,7 +34,7 @@ int main(int argc, char *argv[])
     std::vector<std::vector<Registro*>> resultados;
 
 
-    QFile file("PRUEBAS_COVID_CSV.csv");
+    QFile file("p2.csv");
     if (!file.open(QIODevice::ReadOnly)) {
         qDebug() << file.errorString();
         return 1;

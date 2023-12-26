@@ -12,20 +12,28 @@ SOURCES += \
     AVLTree.cpp \
     Registro.cpp \
     VectorPlus.cpp \
+    conteofiltrado.cpp \
+    csvparser.cpp \
     main.cpp \
     mainpage.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    puntob.cpp
 
 HEADERS += \
     AVLTree.h \
     Registro.h \
     VectorPlus.h \
+    conteofiltrado.h \
+    csvparser.h \
     mainpage.h \
-    mainwindow.h
+    mainwindow.h \
+    pacientedata.h \
+    puntob.h
 
 FORMS += \
     mainpage.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    puntob.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
