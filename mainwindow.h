@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include "mainpage.h"
-#include "puntob.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

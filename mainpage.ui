@@ -10,6 +10,11 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -24,8 +29,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>170</y>
+      <x>180</x>
+      <y>140</y>
       <width>451</width>
       <height>131</height>
      </rect>
@@ -41,6 +46,60 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="carga">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>270</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cargar Datos</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="confirmacion">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>370</y>
+      <width>191</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="siguiente">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>490</y>
+      <width>141</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Siguiente</string>
     </property>
    </widget>
   </widget>

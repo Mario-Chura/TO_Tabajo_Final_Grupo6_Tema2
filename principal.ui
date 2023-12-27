@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Principal</class>
+ <widget class="QMainWindow" name="Principal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="estadistica1">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>520</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Estadistica 1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="estadistica2">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>520</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Estadistica 2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="estadistica3">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>520</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Estadistica 3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="estadistica4">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>520</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Estadistica 4</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tabla">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>591</width>
+      <height>351</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CargaEncabezado">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>50</y>
+      <width>121</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cargar Encabezado</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CargaRegistro">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>90</y>
+      <width>121</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cargar Registos</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

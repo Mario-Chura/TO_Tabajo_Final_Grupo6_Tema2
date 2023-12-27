@@ -23,10 +23,8 @@ void MainWindow::on_pushButton_Login_clicked()
     {
         QMessageBox::information(this, "Mensaje", "Acceso exitoso.");
         this->hide();
-        /*MainPage *mainpage = new MainPage();
-        mainpage ->show();*/
-        puntob *puntob = new class puntob();
-        puntob ->show();
+        MainPage *mainpage = new MainPage();
+        mainpage ->show();
     }
     else
     {
