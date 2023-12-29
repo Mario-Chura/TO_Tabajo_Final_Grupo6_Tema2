@@ -7,18 +7,61 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QFileDialog>
 
 Estadistica2::Estadistica2(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Estadistica2)
 {
     ui->setupUi(this);
+;
 }
 
 Estadistica2::~Estadistica2()
 {
     delete ui;
 }
+
+void Estadistica2::exportarCSV() {
+    QString filePath = QFileDialog::getSaveFileName(this, "Guardar reporte como CSV", QString(), "Archivos CSV (*.csv)");
+
+    if (filePath.isEmpty()) {
+        // El usuario canceló la operación
+        return;
+    }
+
+    QFile file(filePath);
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream stream(&file);
+
+        // Escribir encabezados
+        QStringList header;
+        for (int col = 0; col < ui->tabla->columnCount(); ++col) {
+            header << ui->tabla->horizontalHeaderItem(col)->text();
+        }
+        stream << header.join(',') << '\n';
+
+        // Escribir datos
+        for (int row = 0; row < ui->tabla->rowCount(); ++row) {
+            QStringList rowData;
+            for (int col = 0; col < ui->tabla->columnCount(); ++col) {
+                QTableWidgetItem *item = ui->tabla->item(row, col);
+                if (item) {
+                    rowData << item->text();
+                } else {
+                    rowData << "";  // Si la celda está vacía, agregar un espacio en blanco
+                }
+            }
+            stream << rowData.join(',') << '\n';
+        }
+
+        file.close();
+        QMessageBox::information(nullptr, "Exportación a CSV", "Los datos se han exportado exitosamente a: " + filePath);
+    } else {
+        QMessageBox::critical(nullptr, "Error", "No se pudo abrir el archivo para escribir el CSV.");
+    }
+}
+
 
 void Estadistica2::on_menu_clicked()
 {
@@ -31,9 +74,6 @@ void Estadistica2::on_menu_clicked()
     // Muestra la ventana "principal"
     principal->show();
 }
-
-
-
 
 
 void Estadistica2::on_carga_clicked()
@@ -76,6 +116,6 @@ void Estadistica2::on_carga_clicked()
 
 void Estadistica2::on_reporte_clicked()
 {
-
+  exportarCSV();
 }
 

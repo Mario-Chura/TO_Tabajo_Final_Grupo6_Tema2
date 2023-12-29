@@ -27,7 +27,7 @@ public:
     explicit Estadistica2(QWidget *parent = nullptr);
 
     ~Estadistica2();
-
+   void exportarCSV();
 private slots:
     void on_menu_clicked();
 

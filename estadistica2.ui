@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="menu">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>500</y>
+      <x>40</x>
+      <y>490</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -37,7 +37,7 @@
     <property name="geometry">
      <rect>
       <x>610</x>
-      <y>500</y>
+      <y>490</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -49,7 +49,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Exportar PDF</string>
+     <string>Exportar CSV</string>
     </property>
    </widget>
    <widget class="QLabel" name="titulo">
@@ -68,8 +68,8 @@
    <widget class="QPushButton" name="carga">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>420</y>
+      <x>340</x>
+      <y>490</y>
       <width>131</width>
       <height>41</height>
      </rect>
@@ -90,7 +90,7 @@
       <x>20</x>
       <y>40</y>
       <width>751</width>
-      <height>361</height>
+      <height>431</height>
      </rect>
     </property>
    </widget>
