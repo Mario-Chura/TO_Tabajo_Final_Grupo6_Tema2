@@ -32,6 +32,24 @@ public:
         DEPARTAMENTO_MUESTRAS = newDepartamentoMuestras;
     }
 
+    // Agregar getter y setter para TIPO_MUESTRAS
+    const std::vector<std::vector<Registro*>>& getTipoMuestras() const {
+        return TIPO_MUESTRAS;
+    }
+
+    void setTipoMuestras(const std::vector<std::vector<Registro*>>& newTipoMuestras) {
+        TIPO_MUESTRAS = newTipoMuestras;
+    }
+
+    // Agregar getter y setter para resultados
+    const std::vector<std::vector<Registro*>>& getresultados() const {
+        return resultados;
+    }
+
+    void setresultados(const std::vector<std::vector<Registro*>>& newresultados) {
+        resultados = newresultados;
+    }
+
     const QString& getNombreArchivo() const {
         return nombreArchivo;
     }
@@ -44,6 +62,8 @@ private:
     DataHolder() {}
     AVLTree* tree = nullptr;
     std::vector<std::vector<Registro*>> DEPARTAMENTO_MUESTRAS;
+    std::vector<std::vector<Registro*>> TIPO_MUESTRAS;
+    std::vector<std::vector<Registro*>> resultados;
     QString nombreArchivo;
 };
 

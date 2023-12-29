@@ -41,8 +41,8 @@ void MainPage::on_carga_clicked()
     std::vector<std::vector<Registro*>> TIPO_MUESTRAS;
     std::vector<std::vector<Registro*>> resultados;
 
-    //Estadistica 3 ===============================
-    std::vector<std::pair<std::string, int>> aspiradosTraquealesPorDepartamento;
+
+
 
     if (!nombreArchivo.isEmpty()) {
         AVLTree* tree = new AVLTree(); // Crea el árbol AVL
@@ -286,23 +286,6 @@ void MainPage::on_carga_clicked()
                 TIPO_MUESTRAS.push_back({registro});
             }
 
-
-            // Incrementar el contador de aspirados traqueales por departamento
-            if (registro->getTipoMuestra() == "Aspirado Traqueal") {
-                // Buscar el departamento en el vector de aspirados traqueales por departamento
-                auto it = std::find_if(aspiradosTraquealesPorDepartamento.begin(), aspiradosTraquealesPorDepartamento.end(),
-                                       [&](const std::pair<std::string, int>& pair) {
-                                           return pair.first == registro->getDepartamentoPaciente();
-                                       });
-
-                // Incrementar el contador si se encontró el departamento, de lo contrario, agregar nuevo par
-                if (it != aspiradosTraquealesPorDepartamento.end()) {
-                    it->second++;
-                } else {
-                    aspiradosTraquealesPorDepartamento.emplace_back(registro->getDepartamentoPaciente(), 1);
-                }
-            }
-
             //====================== Resultados ===========================================
             // Buscar resultados en el vector de vectores
             bool resultadoEncontrada = false;
@@ -329,18 +312,12 @@ void MainPage::on_carga_clicked()
         ui->confirmacion->setText(" Carga exitosa... !!!!" );
 
         DataHolder::instance().setDepartamentoMuestras(DEPARTAMENTO_MUESTRAS);
+        DataHolder::instance().setTipoMuestras(TIPO_MUESTRAS);
+        DataHolder::instance().setresultados(resultados);
 
         // Verificacion =============================================================================================
-        int uuidBusqueda = -1; // Cambia esto por el UUID que quieras buscar
-        Registro* registroBuscado = tree->search(uuidBusqueda);
-        if (registroBuscado != nullptr) {
-            // Imprimir la representación en texto del registro buscado
-            std::cout << "Registro con UUID " << uuidBusqueda << ":\n" << registroBuscado->toString() << std::endl;
-        } else {
-            qDebug() << "No se encontró un registro con el UUID" << uuidBusqueda;
-        }
 
-        std::cout << " " << std::endl;
+
 
         // Imprimir los nombres de FECHAS_CORTE en el vector principal
         std::cout << "Nombres de FECHAS_CORTE en el Vector Principal:" << std::endl;
@@ -463,12 +440,19 @@ void MainPage::on_carga_clicked()
             std::cout << vec[0]->getResultado() << std::endl;
         }
 
-
-        // Imprimir los resultados de aspirados traqueales por departamento
-        std::cout << "Aspirados Traqueales por Departamento:" << std::endl;
-        for (const auto& pair : aspiradosTraquealesPorDepartamento) {
-            std::cout << "Departamento: " << pair.first << ", Cantidad: " << pair.second << std::endl;
+        int uuidBusqueda = -1; // Cambia esto por el UUID que quieras buscar
+        Registro* registroBuscado = tree->search(uuidBusqueda);
+        if (registroBuscado != nullptr) {
+            // Imprimir la representación en texto del registro buscado
+            std::cout << "Registro con UUID " << uuidBusqueda << ":\n" << registroBuscado->toString() << std::endl;
+            std::cout << registroBuscado->getResultado() << std::endl;
+        } else {
+            qDebug() << "No se encontró un registro con el UUID" << uuidBusqueda;
         }
+
+        std::cout << " " << std::endl;
+
+
     }
 
 

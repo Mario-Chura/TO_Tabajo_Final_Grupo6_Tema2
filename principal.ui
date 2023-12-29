@@ -109,19 +109,6 @@
      <string>Cargar Registos</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="ejemplo">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>200</y>
-      <width>80</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="Modificar">
     <property name="geometry">
      <rect>
@@ -432,17 +419,78 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLineEdit" name="Contenido">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>250</y>
-      <width>80</width>
+      <x>640</x>
+      <y>300</y>
+      <width>113</width>
       <height>24</height>
      </rect>
     </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>280</y>
+      <width>109</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
-     <string>Imprimir</string>
+     <string>Contenido</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Campo">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>250</y>
+      <width>113</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>230</y>
+      <width>109</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Campo</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_18">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>200</y>
+      <width>109</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>FILTRO</string>
     </property>
    </widget>
   </widget>

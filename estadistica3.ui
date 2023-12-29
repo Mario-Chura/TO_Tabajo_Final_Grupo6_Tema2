@@ -49,7 +49,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Exportar PDF</string>
+     <string>Exportar CSV</string>
     </property>
    </widget>
    <widget class="QLabel" name="titulo">

@@ -23,9 +23,12 @@ private slots:
 
     void on_carga_clicked();
 
+    void on_reporte_clicked();
+
 private:
     Ui::Estadistica3 *ui;
     std::vector<std::vector<Registro*>>* DEPARTAMENTO_MUESTRAS; // Almacena el puntero al vector
+    QMap<QString, QMap<QString, int>> conteos;
 };
 
 #endif // ESTADISTICA3_H
