@@ -6,12 +6,10 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <vector>
-#include <QDebug>
 
 Estadistica3::Estadistica3(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Estadistica3)
-
 {
     ui->setupUi(this);
 }
@@ -32,6 +30,10 @@ void Estadistica3::on_menu_clicked()
     // Muestra la ventana "principal"
     principal->show();
 }
+
+
+
+
 
 void Estadistica3::on_carga_clicked()
 {

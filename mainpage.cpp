@@ -8,7 +8,7 @@
 #include "Registro.h"
 #include <iostream>
 #include "DataHolder.h"
-#include <QDebug>
+
 MainPage::MainPage(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainPage)
@@ -311,7 +311,19 @@ void MainPage::on_carga_clicked()
 
         ui->confirmacion->setText(" Carga exitosa... !!!!" );
 
+
+        DataHolder::instance().setDepartamentoMuestras(FECHAS_CORTE);
+        DataHolder::instance().setDepartamentoMuestras(FECHAS_MUESTRAS);
+        DataHolder::instance().setDepartamentoMuestras(Edades);
+        DataHolder::instance().setDepartamentoMuestras(Sexos);
+        DataHolder::instance().setDepartamentoMuestras(instituciones);
+        DataHolder::instance().setDepartamentoMuestras(UBIGEO_PACIENTES);
+        DataHolder::instance().setDepartamentoMuestras(DEPARTAMENTO_PACIENTES);
+        DataHolder::instance().setDepartamentoMuestras(PROVINCIA_PACIENTES);
+        DataHolder::instance().setDepartamentoMuestras(DISTRITO_PACIENTES);
         DataHolder::instance().setDepartamentoMuestras(DEPARTAMENTO_MUESTRAS);
+        DataHolder::instance().setDepartamentoMuestras(PROVINCIA_MUESTRAS);
+        DataHolder::instance().setDepartamentoMuestras(DISTRITO_MUESTRAS);
         DataHolder::instance().setTipoMuestras(TIPO_MUESTRAS);
         DataHolder::instance().setresultados(resultados);
 

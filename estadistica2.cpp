@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <iostream>
 
 Estadistica2::Estadistica2(QWidget *parent) :
     QMainWindow(parent),

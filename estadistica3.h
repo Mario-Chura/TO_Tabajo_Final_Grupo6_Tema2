@@ -3,7 +3,7 @@
 #include "AVLTree.h"
 #include <QMainWindow>
 #include <vector>
-#include <QDebug>
+
 namespace Ui {
 class Estadistica3;
 }
