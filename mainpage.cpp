@@ -8,7 +8,7 @@
 #include "Registro.h"
 #include <iostream>
 #include "DataHolder.h"
-
+#include <QDebug>
 MainPage::MainPage(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainPage)

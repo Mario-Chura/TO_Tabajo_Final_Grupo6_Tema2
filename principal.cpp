@@ -13,6 +13,7 @@
 #include <QPrintPreviewDialog>
 #include <QPrinter>
 #include <QPrintDialog>
+#include <QDebug>
 
 Principal::Principal(QWidget *parent) :
     QMainWindow(parent),
