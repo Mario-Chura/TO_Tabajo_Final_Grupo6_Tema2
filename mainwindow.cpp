@@ -19,7 +19,10 @@ void MainWindow::on_pushButton_Login_clicked()
     QString UserName =ui->lineEdit_User_Name->text();
     QString Password =ui->lineEdit_Password->text();
 
-    if (UserName == "Mario" && Password == "marioch")
+    if ((UserName == "Mario" && Password == "marioch")||
+        (UserName == "diego" && Password == "diego") ||
+        (UserName == "angie" && Password == "angie") ||
+        (UserName == "jhoer" && Password == "jhoer") )
     {
         QMessageBox::information(this, "Mensaje", "Acceso exitoso.");
         this->hide();
