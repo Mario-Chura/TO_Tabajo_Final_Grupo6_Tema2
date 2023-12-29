@@ -26,6 +26,7 @@
     <property name="font">
      <font>
       <pointsize>8</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -45,11 +46,12 @@
     <property name="font">
      <font>
       <pointsize>8</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
     <property name="text">
-     <string>Exportar PDF</string>
+     <string>Exportar CSV</string>
     </property>
    </widget>
    <widget class="QLabel" name="titulo">
@@ -58,11 +60,47 @@
       <x>20</x>
       <y>10</y>
       <width>651</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;A. Pruebas moleculares por Departamento, Tipo de Muestra según el Resultado de Muestra.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tabla">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>50</y>
+      <width>741</width>
+      <height>401</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="carga">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>470</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>MS Shell Dlg 2</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cargar Reporte</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
@@ -72,7 +110,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
