@@ -39,6 +39,23 @@ public:
     std::string getTipoMuestra();
     std::string getResultado();
     std::string toString();
+
+    // Setters
+    void setFechaCorte(const std::string& fecha);
+    void setUuid(int newUuid);
+    void setFechaMuestra(const std::string& fecha);
+    void setEdad(int newEdad);
+    void setSexo(const std::string& newSexo);
+    void setInstitucion(const std::string& newInstitucion);
+    void setUbigeoPaciente(const std::string& newUbigeo);
+    void setDepartamentoPaciente(const std::string& newDepartamento);
+    void setProvinciaPaciente(const std::string& newProvincia);
+    void setDistritoPaciente(const std::string& newDistrito);
+    void setDepartamentoMuestra(const std::string& newDepartamento);
+    void setProvinciaMuestra(const std::string& newProvincia);
+    void setDistritoMuestra(const std::string& newDistrito);
+    void setTipoMuestra(const std::string& newTipoMuestra);
+    void setResultado(const std::string& newResultado);
 };
 
 #endif // REGISTRO_H

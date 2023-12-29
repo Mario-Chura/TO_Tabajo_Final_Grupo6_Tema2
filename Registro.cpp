@@ -64,6 +64,69 @@ std::string Registro::getResultado() {
     return resultado;
 }
 
+
+// Setters
+void Registro::setFechaCorte(const std::string& fecha) {
+    fecha_corte = fecha;
+}
+
+void Registro::setUuid(int newUuid) {
+    uuid = newUuid;
+}
+
+void Registro::setFechaMuestra(const std::string& fecha) {
+    fecha_muestra = fecha;
+}
+
+void Registro::setEdad(int newEdad) {
+    edad = newEdad;
+}
+
+void Registro::setSexo(const std::string& newSexo) {
+    sexo = newSexo;
+}
+
+void Registro::setInstitucion(const std::string& newInstitucion) {
+    institucion = newInstitucion;
+}
+
+void Registro::setUbigeoPaciente(const std::string& newUbigeo) {
+    ubigeo_paciente = newUbigeo;
+}
+
+void Registro::setDepartamentoPaciente(const std::string& newDepartamento) {
+    departamento_paciente = newDepartamento;
+}
+
+void Registro::setProvinciaPaciente(const std::string& newProvincia) {
+    provincia_paciente = newProvincia;
+}
+
+void Registro::setDistritoPaciente(const std::string& newDistrito) {
+    distrito_paciente = newDistrito;
+}
+
+void Registro::setDepartamentoMuestra(const std::string& newDepartamento) {
+    departamento_muestra = newDepartamento;
+}
+
+void Registro::setProvinciaMuestra(const std::string& newProvincia) {
+    provincia_muestra = newProvincia;
+}
+
+void Registro::setDistritoMuestra(const std::string& newDistrito) {
+    distrito_muestra = newDistrito;
+}
+
+void Registro::setTipoMuestra(const std::string& newTipoMuestra) {
+    tipo_muestra = newTipoMuestra;
+}
+
+void Registro::setResultado(const std::string& newResultado) {
+    resultado = newResultado;
+}
+
+
 std::string Registro::toString() {
     std::ostringstream oss;
     oss << "Fecha de corte: " << fecha_corte << "\n"

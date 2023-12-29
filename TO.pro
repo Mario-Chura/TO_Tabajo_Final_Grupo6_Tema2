@@ -23,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     AVLTree.h \
+    DataHolder.h \
     Registro.h \
     VectorPlus.h \
     estadistica1.h \
@@ -42,6 +43,8 @@ FORMS += \
     mainwindow.ui \
     principal.ui
 
+QT += widgets
+QT += printsupport
 
 
 

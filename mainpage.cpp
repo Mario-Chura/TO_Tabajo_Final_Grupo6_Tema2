@@ -7,12 +7,14 @@
 #include "AVLTree.h"
 #include "Registro.h"
 #include <iostream>
+#include "DataHolder.h"
 
 MainPage::MainPage(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainPage)
 {
     ui->setupUi(this);
+
 }
 
 MainPage::~MainPage()
@@ -23,7 +25,7 @@ MainPage::~MainPage()
 void MainPage::on_carga_clicked()
 {
     QString nombreArchivo = QFileDialog::getOpenFileName(this, tr("Seleccionar archivo CSV"), "", tr("Archivos CSV (*.csv);;Todos los archivos (*.*)"));
-
+    DataHolder::instance().setNombreArchivo(nombreArchivo);
     std::vector<std::vector<Registro*>> FECHAS_CORTE;
     std::vector<std::vector<Registro*>> FECHAS_MUESTRAS;
     std::vector<std::vector<Registro*>> Edades;
@@ -39,8 +41,13 @@ void MainPage::on_carga_clicked()
     std::vector<std::vector<Registro*>> TIPO_MUESTRAS;
     std::vector<std::vector<Registro*>> resultados;
 
+    //Estadistica 3 ===============================
+    std::vector<std::pair<std::string, int>> aspiradosTraquealesPorDepartamento;
+
     if (!nombreArchivo.isEmpty()) {
         AVLTree* tree = new AVLTree(); // Crea el árbol AVL
+        DataHolder::instance().setTree(tree);
+
 
         QFile file(nombreArchivo);
         if (!file.open(QIODevice::ReadOnly)) {
@@ -279,6 +286,23 @@ void MainPage::on_carga_clicked()
                 TIPO_MUESTRAS.push_back({registro});
             }
 
+
+            // Incrementar el contador de aspirados traqueales por departamento
+            if (registro->getTipoMuestra() == "Aspirado Traqueal") {
+                // Buscar el departamento en el vector de aspirados traqueales por departamento
+                auto it = std::find_if(aspiradosTraquealesPorDepartamento.begin(), aspiradosTraquealesPorDepartamento.end(),
+                                       [&](const std::pair<std::string, int>& pair) {
+                                           return pair.first == registro->getDepartamentoPaciente();
+                                       });
+
+                // Incrementar el contador si se encontró el departamento, de lo contrario, agregar nuevo par
+                if (it != aspiradosTraquealesPorDepartamento.end()) {
+                    it->second++;
+                } else {
+                    aspiradosTraquealesPorDepartamento.emplace_back(registro->getDepartamentoPaciente(), 1);
+                }
+            }
+
             //====================== Resultados ===========================================
             // Buscar resultados en el vector de vectores
             bool resultadoEncontrada = false;
@@ -303,6 +327,8 @@ void MainPage::on_carga_clicked()
         }
 
         ui->confirmacion->setText(" Carga exitosa... !!!!" );
+
+        DataHolder::instance().setDepartamentoMuestras(DEPARTAMENTO_MUESTRAS);
 
         // Verificacion =============================================================================================
         int uuidBusqueda = -1; // Cambia esto por el UUID que quieras buscar
@@ -436,6 +462,13 @@ void MainPage::on_carga_clicked()
         for (const auto& vec : resultados) {
             std::cout << vec[0]->getResultado() << std::endl;
         }
+
+
+        // Imprimir los resultados de aspirados traqueales por departamento
+        std::cout << "Aspirados Traqueales por Departamento:" << std::endl;
+        for (const auto& pair : aspiradosTraquealesPorDepartamento) {
+            std::cout << "Departamento: " << pair.first << ", Cantidad: " << pair.second << std::endl;
+        }
     }
 
 
@@ -448,7 +481,7 @@ void MainPage::on_siguiente_clicked()
     this->hide();
 
     // Crea o obtén la instancia de la ventana llamada "principal"
-    Principal *principal = new Principal();  // Asegúrate de que la clase se llama "Principal"
+    Principal *principal = new Principal(DataHolder::instance().getTree());  // Asegúrate de que la clase se llama "Principal"
 
     // Muestra la ventana "principal"
     principal->show();

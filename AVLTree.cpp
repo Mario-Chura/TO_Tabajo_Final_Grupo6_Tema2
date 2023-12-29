@@ -163,3 +163,18 @@ Registro* AVLTree::search(int id) {
     return nullptr;
 }
 
+void AVLTree::inOrderTraversal(Node* root, std::vector<Registro*>& result) {
+    if (root != nullptr) {
+        inOrderTraversal(root->left, result);
+        result.push_back(root->registro);
+        inOrderTraversal(root->right, result);
+    }
+}
+
+// Agrega este nuevo método público
+std::vector<Registro*> AVLTree::getAllRegistros() {
+    std::vector<Registro*> result;
+    inOrderTraversal(root, result);
+    return result;
+}
+
