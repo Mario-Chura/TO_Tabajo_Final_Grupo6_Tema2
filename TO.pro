@@ -12,6 +12,8 @@ SOURCES += \
     AVLTree.cpp \
     Registro.cpp \
     VectorPlus.cpp \
+    e2conteofiltrado.cpp \
+    e2csvprsr.cpp \
     estadistica1.cpp \
     estadistica2.cpp \
     estadistica3.cpp \
@@ -26,6 +28,9 @@ HEADERS += \
     DataHolder.h \
     Registro.h \
     VectorPlus.h \
+    e2conteofiltrado.h \
+    e2csvprsr.h \
+    e2paciente.h \
     estadistica1.h \
     estadistica2.h \
     estadistica3.h \

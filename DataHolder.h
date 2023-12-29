@@ -23,6 +23,15 @@ public:
         tree = newTree;
     }
 
+    // Agregar getter y setter para DEPARTAMENTO_paciente
+    const std::vector<std::vector<Registro*>>& getDepartamentoPaciente() const {
+        return DEPARTAMENTO_PACIENTE;
+    }
+
+    void setDepartamentoPaciente(const std::vector<std::vector<Registro*>>& newDepartamentoPaciente) {
+        DEPARTAMENTO_PACIENTE = newDepartamentoPaciente;
+    }
+
     // Agregar getter y setter para DEPARTAMENTO_MUESTRAS
     const std::vector<std::vector<Registro*>>& getDepartamentoMuestras() const {
         return DEPARTAMENTO_MUESTRAS;
@@ -32,7 +41,7 @@ public:
         DEPARTAMENTO_MUESTRAS = newDepartamentoMuestras;
     }
 
-    // Agregar getter y setter para TIPO_MUESTRAS
+     // Agregar getter y setter para TIPO_MUESTRAS
     const std::vector<std::vector<Registro*>>& getTipoMuestras() const {
         return TIPO_MUESTRAS;
     }
@@ -58,9 +67,31 @@ public:
         nombreArchivo = newNombreArchivo;
     }
 
+
+      // Agregar getter y setter para PROVINCIA_PACIENTE
+
+    const std::vector<std::vector<Registro*>>& getProvinciaPaciente() const {
+        return PROVINCIA_PACIENTE;
+    }
+
+    void setProvinciaPaciente(const std::vector<std::vector<Registro*>>& newProvinciaPaciente) {
+        PROVINCIA_PACIENTE = newProvinciaPaciente;
+    }
+
+    // Agregar getter y setter para SEXO
+    const std::vector<std::vector<Registro*>>& getSexo() const {
+        return SEXO;
+    }
+    void setSexo(const std::vector<std::vector<Registro*>>& newSexo) {
+        SEXO = newSexo;
+    }
+
 private:
     DataHolder() {}
     AVLTree* tree = nullptr;
+    std::vector<std::vector<Registro*>> PROVINCIA_PACIENTE;
+    std::vector<std::vector<Registro*>> SEXO;
+    std::vector<std::vector<Registro*>> DEPARTAMENTO_PACIENTE;
     std::vector<std::vector<Registro*>> DEPARTAMENTO_MUESTRAS;
     std::vector<std::vector<Registro*>> TIPO_MUESTRAS;
     std::vector<std::vector<Registro*>> resultados;
@@ -68,4 +99,5 @@ private:
 };
 
 #endif // DATAHOLDER_H
+
 
