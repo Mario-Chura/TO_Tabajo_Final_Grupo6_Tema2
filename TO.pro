@@ -20,6 +20,8 @@ SOURCES += \
     estadistica4.cpp \
     main.cpp \
     mainpage.cpp \
+    e4csvprsr.cpp \
+    e4conteofiltrado.cpp \
     mainwindow.cpp \
     principal.cpp
 
@@ -31,6 +33,9 @@ HEADERS += \
     e2conteofiltrado.h \
     e2csvprsr.h \
     e2paciente.h \
+    e4conteofiltrado.h \
+    e4csvprsr.h \
+    e4paciente.h \
     estadistica1.h \
     estadistica2.h \
     estadistica3.h \
