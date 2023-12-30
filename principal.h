@@ -31,17 +31,11 @@ private slots:
 
     void on_estadistica4_clicked();
 
-    void on_ejemplo_clicked();
-
     void on_CargaRegistro_clicked();
 
     void on_Modificar_clicked();
 
     void on_tabla_itemClicked(QTableWidgetItem *item);
-
-    void on_pushButton_clicked();
-
-
 
 private:
     Ui::Principal *ui;

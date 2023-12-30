@@ -45,6 +45,3 @@ void MainWindow::on_pushButton_Cancel_clicked()
     }
 }
 
-
-
-

@@ -23,6 +23,8 @@ private slots:
     void on_pushButton_Cancel_clicked();
 
 
+    void on_Registro_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

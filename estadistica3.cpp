@@ -3,6 +3,7 @@
 #include "principal.h"
 #include "DataHolder.h"
 #include <iostream>
+
 #include <QFileDialog>
 #include <QTextStream>
 #include <vector>
@@ -25,14 +26,10 @@ void Estadistica3::on_menu_clicked()
     this->hide();
 
     // Crea o obtén la instancia de la ventana llamada "principal"
-    Principal *principal = new Principal();  // Asegúrate de que la clase se llama "Principal"
-
+    Principal *principal = new Principal();
     // Muestra la ventana "principal"
     principal->show();
 }
-
-
-
 
 
 void Estadistica3::on_carga_clicked()

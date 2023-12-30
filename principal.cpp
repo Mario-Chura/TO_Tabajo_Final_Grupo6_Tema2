@@ -10,10 +10,6 @@
 #include "Registro.h"
 
 
-#include <QPrintPreviewDialog>
-#include <QPrinter>
-#include <QPrintDialog>
-
 Principal::Principal(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Principal)
@@ -22,23 +18,12 @@ Principal::Principal(QWidget *parent) :
     f=-1;
 }
 
-// En principal.cpp, modifica el constructor de Principal para recibir un árbol
-Principal::Principal(AVLTree* tree, QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::Principal)
-{
-    ui->setupUi(this);
-    // Usa el árbol proporcionado
-    this->tree = tree;
-}
+
 
 Principal::~Principal()
 {
     delete ui;
 }
-
-
-
 
 void Principal::on_estadistica1_clicked()
 {
@@ -46,7 +31,7 @@ void Principal::on_estadistica1_clicked()
     this->hide();
 
     // Crea o obtén la instancia de la ventana llamada "principal"
-    Estadistica1 *estadistica1 = new Estadistica1();  // Asegúrate de que la clase se llama "Principal"
+    Estadistica1 *estadistica1 = new Estadistica1();
 
     // Muestra la ventana "principal"
     estadistica1->show();
@@ -59,7 +44,7 @@ void Principal::on_estadistica2_clicked()
     this->hide();
 
     // Crea o obtén la instancia de la ventana llamada "principal"
-    Estadistica2 *estadistica2 = new Estadistica2();  // Asegúrate de que la clase se llama "Principal"
+    Estadistica2 *estadistica2 = new Estadistica2();
 
     // Muestra la ventana "principal"
     estadistica2->show();
@@ -72,7 +57,7 @@ void Principal::on_estadistica3_clicked()
     this->hide();
 
     // Crea o obtén la instancia de la ventana llamada "principal"
-    Estadistica3 *estadistica3 = new Estadistica3();  // Asegúrate de que la clase se llama "Principal"
+    Estadistica3 *estadistica3 = new Estadistica3();
 
     // Muestra la ventana "principal"
     estadistica3->show();
@@ -85,27 +70,10 @@ void Principal::on_estadistica4_clicked()
     this->hide();
 
     // Crea o obtén la instancia de la ventana llamada "principal"
-    Estadistica4 *estadistica4 = new Estadistica4();  // Asegúrate de que la clase se llama "Principal"
+    Estadistica4 *estadistica4 = new Estadistica4();
 
     // Muestra la ventana "principal"
     estadistica4->show();
-}
-
-
-void Principal::on_ejemplo_clicked()
-{
-    if (tree) {
-        int uuidBusqueda = -1; // Cambia esto por el UUID que quieras buscar
-        Registro* registroBuscado = tree->search(uuidBusqueda);
-        if (registroBuscado != nullptr) {
-            // Imprimir la representación en texto del registro buscado
-            std::cout << "Registro con UUID " << uuidBusqueda << ":\n" << registroBuscado->toString() << std::endl;
-        } else {
-            qDebug() << "No se encontró un registro con el UUID" << uuidBusqueda;
-        }
-    } else {
-        qDebug() << "El árbol es nulo";
-    }
 }
 
 
@@ -130,6 +98,8 @@ void Principal::on_CargaRegistro_clicked()
     ui->tabla->setColumnWidth(12, 200);
     ui->tabla->setColumnWidth(13, 200);
     ui->tabla->setColumnWidth(14, 200);
+
+
 
     AVLTree* tree = DataHolder::instance().getTree();
     // Limpiar la tabla antes de cargar nuevos datos
@@ -180,7 +150,7 @@ void Principal::on_Modificar_clicked()
 
     // Si se encontró el registro, actualiza sus datos
     if (registro != nullptr) {
-        // Actualiza los atributos del registro directamente en el arbol
+        // Actualiza los atributos del registro directamente en el ARBOL
         registro->setFechaCorte(ui->LfechaCorte->text().toStdString());
         registro->setUuid(ui->Luuid->text().toInt());
         registro->setFechaMuestra(ui->LfechaMuesta->text().toStdString());
@@ -262,19 +232,5 @@ void Principal::on_tabla_itemClicked(QTableWidgetItem *item)
 }
 
 
-void Principal::on_pushButton_clicked()
-{
-    QPrinter printer(QPrinter::HighResolution);
-    QPrintDialog printDialog(&printer, this);
-
-    if (printDialog.exec() != QDialog::Accepted) {
-        return;  // El usuario canceló la impresión
-    }
-
-    QPrintPreviewDialog previewDialog(&printer, this);
-    connect(&previewDialog, SIGNAL(paintRequested(QPrinter*)), this, SLOT(imprimirTabla(QPrinter*)));
-
-    previewDialog.exec();
-}
 
 

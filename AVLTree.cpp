@@ -171,7 +171,7 @@ void AVLTree::inOrderTraversal(Node* root, std::vector<Registro*>& result) {
     }
 }
 
-// Agrega este nuevo método público
+
 std::vector<Registro*> AVLTree::getAllRegistros() {
     std::vector<Registro*> result;
     inOrderTraversal(root, result);

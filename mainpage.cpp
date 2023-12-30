@@ -16,7 +16,7 @@ MainPage::MainPage(QWidget *parent) :
     ui->setupUi(this);
 
 }
-
+//===========CARGA DE DATOS
 MainPage::~MainPage()
 {
     delete ui;
@@ -331,88 +331,6 @@ void MainPage::on_carga_clicked()
 
 
 
-        // Imprimir los nombres de FECHAS_CORTE en el vector principal
-        std::cout << "Nombres de FECHAS_CORTE en el Vector Principal:" << std::endl;
-        for (const auto& vec : FECHAS_CORTE) {
-            std::cout << vec[0]->getFechaCorte() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres de FECHAS_MUESTRAS en el vector principal
-        std::cout << "Nombres de FECHAS_MUESTRAS en el Vector Principal:" << std::endl;
-        for (const auto& vec : FECHAS_MUESTRAS) {
-            std::cout << vec[0]->getFechaMuestra() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres de Edades en el vector principal
-        std::cout << "Nombres de Edades en el Vector Principal:" << std::endl;
-        for (const auto& vec : Edades) {
-            std::cout << vec[0]->getEdad() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres de Sexos en el vector principal
-        std::cout << "Nombres de Sexos en el Vector Principal:" << std::endl;
-        for (const auto& vec : Sexos) {
-            std::cout << vec[0]->getSexo() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
-
-        // Imprimir los nombres de las instituciones en el vector principal
-        std::cout << "Nombres de Instituciones en el Vector Principal:" << std::endl;
-        for (const auto& vec : instituciones) {
-            std::cout << vec[0]->getInstitucion() << std::endl;
-        }
-
-        std::cout << " " << std::endl;
-
-
-        // Imprimir los nombres de UBIGEO_PACIENTES en el vector principal
-        std::cout << "Nombres de UBIGEO_PACIENTES en el Vector Principal:" << std::endl;
-        for (const auto& vec : UBIGEO_PACIENTES) {
-            std::cout << vec[0]->getUbigeoPaciente() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres de DEPARTAMENTO_PACIENTES en el vector principal
-        std::cout << "Nombres de DEPARTAMENTO_PACIENTES en el Vector Principal:" << std::endl;
-        for (const auto& vec : DEPARTAMENTO_PACIENTES) {
-            std::cout << vec[0]->getDepartamentoPaciente() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres de PROVINCIA_PACIENTES en el vector principal
-        std::cout << "Nombres de PROVINCIA_PACIENTES en el Vector Principal:" << std::endl;
-        for (const auto& vec : PROVINCIA_PACIENTES) {
-            std::cout << vec[0]->getProvinciaPaciente() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres DISTRITO_PACIENTES en el vector principal
-        std::cout << "Nombres de DISTRITO_PACIENTES en el Vector Principal:" << std::endl;
-        for (const auto& vec : DISTRITO_PACIENTES) {
-            std::cout << vec[0]->getDistritoPaciente() << std::endl;
-        }
-
-
-        std::cout << " " << std::endl;
-
         // Imprimir los nombres DEPARTAMENTO_MUESTRAS en el vector principal
         std::cout << "Nombres de DEPARTAMENTO_MUESTRAS en el Vector Principal:" << std::endl;
         for (const auto& vec : DEPARTAMENTO_MUESTRAS) {
@@ -422,40 +340,11 @@ void MainPage::on_carga_clicked()
 
         std::cout << " " << std::endl;
 
-        // Imprimir los nombres de PROVINCIA_MUESTRAS en el vector principal
-        std::cout << "Nombres de PROVINCIA_MUESTRAS en el Vector Principal:" << std::endl;
-        for (const auto& vec : PROVINCIA_MUESTRAS) {
-            std::cout << vec[0]->getProvinciaMuestra() << std::endl;
-        }
 
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres DISTRITO_MUESTRAS en el vector principal
-        std::cout << "Nombres de DISTRITO_MUESTRAS en el Vector Principal:" << std::endl;
-        for (const auto& vec : DISTRITO_MUESTRAS) {
-            std::cout << vec[0]->getDistritoMuestra() << std::endl;
-        }
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres de TIPO_MUESTRAS en el vector principal
-        std::cout << "Nombres de TIPO_MUESTRAS en el Vector Principal:" << std::endl;
-        for (const auto& vec : TIPO_MUESTRAS) {
-            std::cout << vec[0]->getTipoMuestra() << std::endl;
-        }
-
-        std::cout << " " << std::endl;
-
-        // Imprimir los nombres de los resultados en el vector principal
-        std::cout << "Nombres de resultados en el Vector Principal:" << std::endl;
-        for (const auto& vec : resultados) {
-            std::cout << vec[0]->getResultado() << std::endl;
-        }
-
-        int uuidBusqueda = -1; // Cambia esto por el UUID que quieras buscar
+        int uuidBusqueda = -1; // Colocamos el UUID que deseamos buscar
         Registro* registroBuscado = tree->search(uuidBusqueda);
         if (registroBuscado != nullptr) {
-            // Imprimir la representación en texto del registro buscado
+            // Imprimimos
             std::cout << "Registro con UUID " << uuidBusqueda << ":\n" << registroBuscado->toString() << std::endl;
             std::cout << registroBuscado->getResultado() << std::endl;
         } else {
@@ -477,7 +366,7 @@ void MainPage::on_siguiente_clicked()
     this->hide();
 
     // Crea o obtén la instancia de la ventana llamada "principal"
-    Principal *principal = new Principal(DataHolder::instance().getTree());  // Asegúrate de que la clase se llama "Principal"
+    Principal *principal = new Principal();
 
     // Muestra la ventana "principal"
     principal->show();
